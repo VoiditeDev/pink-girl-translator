@@ -2,15 +2,8 @@ local Chat = game:GetService("Chat")
 local CollectionService = game:GetService("CollectionService")
 local Players = game:GetService("Players")
 local isAdmin = require(script.isAdmin)
-local Chance = require(script.Chance)
 
-local pink_girls = {}
-
-for _, pink_girl in script.Models.PinkGirls:GetChildren() do
-	pink_girls[pink_girl] = 1
-end
-
-local pinkgirlrandom = Chance.fromResult(pink_girls)
+local pinkgirls = script.Models.PinkGirls:GetChildren()
 
 Players.PlayerAdded:Connect(function(player)
 	player.CharacterAdded:Connect(function(char)
@@ -29,7 +22,7 @@ Players.PlayerAdded:Connect(function(player)
 				return
 			end
 			
-			local pinkgirl = pinkgirlrandom:Run()
+			local pinkgirl = pinkgirls[math.random(#pinkgirls)]
 			
 			local function morphPinkGirl(plaer: Player) -- learned this from the catnap [that poppy playtime character] morph model I found from the toolbox
 				local pinkclone = pinkgirl:Clone()
